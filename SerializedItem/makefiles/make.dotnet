@@ -1,0 +1,69 @@
+#-----------------------------------------------------------------------------
+# Makefile for building C# applications using HALCON/.NET
+# (and possibly HDevEngine/.NET) with Mono under Linux and Solaris.
+#-----------------------------------------------------------------------------
+# This is intended to be included by a small makefile which sets up
+# variables for a specific example such as
+#
+#   APP_NAME           = WindowsApplication1
+#   APP_FORM           = Form1
+#   XL                 = 0
+#   ENGINE             = 0
+#
+#-----------------------------------------------------------------------------
+# Limitations: Only supports Windows Forms applications with exactly one Form
+#-----------------------------------------------------------------------------
+# Explicitely specify target "config" to build configuration files with dllmap
+#-----------------------------------------------------------------------------
+# Copyright (c) 2006-2018 MVTec Software GmbH, http://www.mvtec.com
+#-----------------------------------------------------------------------------
+
+
+# Platform-dependent symbols and commands
+SLASH              = /
+CP                 = cp
+RM                 = rm
+MKDIR              = mkdir -p
+
+
+# Compiling C# sources and resources
+CSC                = mcs
+RESGEN             = resgen
+
+
+# Check if xl version suffix should be used. 
+# This must be done before including the variables
+ifeq ($(XL),1)
+HSUFFIX            = xl
+endif
+
+
+# Platform-independent variables for project, HALCON and compiler flags
+include make.dotnet.variables
+
+
+# Adapt compiler flags if required
+ifeq ($(ENGINE),1)
+CSC_FLAGS         += $(CSC_FLAGS_ENGINE)
+endif
+
+
+################## # Rules ###################################################
+
+
+first: all
+
+ifeq ($(ENGINE),1)
+xcopy_deploy: xcopy_deploy_halcon xcopy_deploy_engine
+else
+xcopy_deploy: xcopy_deploy_halcon
+endif
+
+ifeq ($(ENGINE),1)
+config: config_halcon config_engine
+else
+config: config_halcon
+endif
+
+#Platform-independent rules for building assembly and configuration files
+include make.dotnet.rules

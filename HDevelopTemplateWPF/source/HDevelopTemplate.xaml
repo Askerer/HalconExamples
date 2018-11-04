@@ -1,0 +1,15 @@
+﻿<Window x:Class="HDevelopTemplateWPF.HDevelopTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="Window_Loaded"
+    Title="Window1" Height="591" Width="852" xmlns:my="clr-namespace:HalconDotNet;assembly=halcondotnet">
+    <Grid Height="Auto" Width="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="34*" />
+            <ColumnDefinition Width="889*" />
+        </Grid.ColumnDefinitions>
+        <my:HWindowControlWPF Margin="22,22,161,62" Name="hWindowControlWPF1" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="640" Height="480" />
+        <Button Grid.Column="2" Grid.Row="1" Height="45" HorizontalAlignment="Right" Margin="0,22,28,0" Name="buttonRun" VerticalAlignment="Top" Width="112" Click="buttonRun_Click">Run</Button>
+        <Label Height="28" Margin="22,0,168,12" Name="labelStatus" VerticalAlignment="Bottom" Grid.ColumnSpan="2"></Label>
+    </Grid>
+</Window>

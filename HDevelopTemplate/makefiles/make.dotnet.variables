@@ -1,0 +1,48 @@
+################## # Project #################################################
+
+
+DIR_OUT            = bin
+APP_MAIN           = $(APP_NAME).$(APP_FORM)
+APP_OUT            = $(DIR_OUT)$(SLASH)$(APP_NAME).exe
+
+SRC_DIR            = ..$(SLASH)source
+SRC_FILES          = $(SRC_DIR)$(SLASH)*.cs
+
+RES_FORM           = $(SRC_DIR)$(SLASH)$(APP_FORM).resx
+RES_OBJ_FORM       = $(APP_FORM).resources
+
+
+################## # HALCON ##################################################
+
+
+LIB_HALCON         = $(HALCONROOT)$(SLASH)lib$(SLASH)$(HALCONARCH)$(SLASH)libhalcon$(HSUFFIX).so
+LIB_ENGINE         = $(HALCONROOT)$(SLASH)lib$(SLASH)$(HALCONARCH)$(SLASH)libhdevengine$(HSUFFIX).so
+
+COPY_HALCON_DOTNET = $(DIR_OUT)$(SLASH)halcondotnet$(HSUFFIX).dll
+COPY_ENGINE_DOTNET = $(DIR_OUT)$(SLASH)hdevenginedotnet$(HSUFFIX).dll
+
+LIB_HALCON_DOTNET  = $(HALCONROOT)$(SLASH)bin$(SLASH)dotnet20$(SLASH)halcondotnet$(HSUFFIX).dll
+LIB_ENGINE_DOTNET  = $(HALCONROOT)$(SLASH)bin$(SLASH)dotnet20$(SLASH)hdevenginedotnet$(HSUFFIX).dll
+
+CONF_HALCON_DOTNET = $(COPY_HALCON_DOTNET).config
+CONF_ENGINE_DOTNET = $(COPY_ENGINE_DOTNET).config
+
+
+################## # Compiler Flags ##########################################
+
+
+CSC_FLAGS_OPTIMIZE = /optimize
+CSC_FLAGS_DEBUG    = /debug /define:DEBUG
+CSC_FLAGS_WARN     = /warn:2
+CSC_FLAGS_WINFORM  = /noconfig \
+                     /r:System.dll /r:System.Data.dll /r:System.Design.dll \
+                     /r:System.Drawing.dll /r:System.Windows.Forms.dll
+
+CSC_FLAGS_HALCON   = /r:"$(LIB_HALCON_DOTNET)"
+CSC_FLAGS_ENGINE   = /r:"$(LIB_ENGINE_DOTNET)"
+CSC_FLAGS_X86      = /platform:x86
+
+# Standard flags for release builds of Windows Forms examples
+
+CSC_FLAGS          = $(CSC_FLAGS_WINFORM) $(CSC_FLAGS_HALCON) \
+                     $(CSC_FLAGS_WARN) $(CSC_FLAGS_OPTIMIZE)

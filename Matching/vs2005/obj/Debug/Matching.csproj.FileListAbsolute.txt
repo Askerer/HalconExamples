@@ -1,0 +1,12 @@
+D:\HalCon13\examples\c#\Matching\vs2005\bin\Debug\Matching.exe
+D:\HalCon13\examples\c#\Matching\vs2005\bin\Debug\Matching.pdb
+D:\HalCon13\examples\c#\Matching\vs2005\bin\Debug\halcondotnet.dll
+D:\HalCon13\examples\c#\Matching\vs2005\bin\Debug\halcondotnet.xml
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.csprojAssemblyReference.cache
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.MatchingForm.resources
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.Properties.Resources.resources
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.csproj.GenerateResource.cache
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.csproj.CoreCompileInputs.cache
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.csproj.CopyComplete
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.exe
+D:\HalCon13\examples\c#\Matching\vs2005\obj\Debug\Matching.pdb

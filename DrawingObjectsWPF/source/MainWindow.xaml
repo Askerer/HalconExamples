@@ -1,0 +1,25 @@
+﻿<Window x:Class="DrawingObjectsWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="525" Width="525" xmlns:my="clr-namespace:HalconDotNet;assembly=halcondotnet"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <ContextMenu x:Key="cmButton">
+            <MenuItem Header="rectangle1" Click="OnRectangle1_Click"/>
+            <MenuItem Header="rectangle2" Click="OnRectangle2_Click"/>
+            <MenuItem Header="circle" Click="OnCircle_Click"/>
+            <MenuItem Header="ellipse" Click="OnEllipse_Click"/>
+            <MenuItem Header="clear all objects" Click="OnClearAllObjects_Click"/>
+        </ContextMenu>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*" Name="Container"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="Instructions: Add new drawing objects via the context menu (right mouse button)"
+               Name="label1" Grid.Row="0"/>
+        <my:HSmartWindowControlWPF Grid.Row="1" Name="hSmartWindowControlWPF1" MouseRightButtonDown="hSmartWindowControlWPF1_MouseRightButtonDown"
+                                   HInitWindow="hSmartWindowControlWPF1_HInitWindow" />
+    </Grid>
+</Window>

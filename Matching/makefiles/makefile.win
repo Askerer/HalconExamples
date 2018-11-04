@@ -1,0 +1,8 @@
+# Configure variables for this example and build using generic makefile
+
+APP_NAME           = Matching
+APP_FORM           = MatchingForm
+XL                 = 0
+ENGINE             = 0
+
+!include make.dotnet.win

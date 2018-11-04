@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="13.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>* Initialize visualization</c>
+<l>dev_update_off ()</l>
+<l>dev_close_window ()</l>
+<l>dev_open_window (0, 0, 512, 512, 'black', WindowHandle)</l>
+<l>dev_set_part (0, 0, 511, 511)</l>
+<c>* </c>
+<c>* Read background image and attach it to the window</c>
+<l>read_image (Image, 'fabrik')</l>
+<l>attach_background_to_window (Image, WindowHandle)</l>
+<c>* </c>
+<c>* Add a drawing object and start the processing loop</c>
+<l>add_new_drawing_object ('rectangle1', WindowHandle, DrawID)</l>
+<c></c>
+<l>process_image (Image, EdgeAmplitude, WindowHandle, DrawID)</l>
+<l>display_results (EdgeAmplitude)</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+<procedure name="add_new_drawing_object">
+<interface>
+<ic>
+<par name="Type" base_type="ctrl" dimension="0"/>
+<par name="WindowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+<oc>
+<par name="DrawID" base_type="ctrl" dimension="0"/>
+</oc>
+</interface>
+<body>
+<c>* Create a drawing object DrawID of the specified Type</c>
+<c>* and attach it to the graphics window WindowHandle</c>
+<c>* </c>
+<l>if (Type == 'rectangle1')</l>
+<l>    create_drawing_object_rectangle1 (100, 100, 200, 200, DrawID)</l>
+<l>elseif (Type == 'circle')</l>
+<l>    create_drawing_object_circle (200, 200, 120, DrawID)</l>
+<l>elseif (Type == 'rectangle2')</l>
+<l>    create_drawing_object_rectangle2 (200, 200, 0, 100, 100, DrawID)</l>
+<l>elseif (Type == 'ellipse')</l>
+<l>    create_drawing_object_ellipse (200, 200, 0, 100, 60, DrawID)</l>
+<l>else</l>
+<l>    throw (['Unrecognized drawing object type.','Either not a valid type or not supported by this procedure'])</l>
+<l>endif</l>
+<l>return ()</l>
+</body>
+<docu id="add_new_drawing_object">
+<parameters>
+<parameter id="DrawID">
+<default_type>integer</default_type>
+<mixed_type>false</mixed_type>
+<sem_type>drawing_object</sem_type>
+<type_list>
+<item>integer</item>
+</type_list>
+</parameter>
+<parameter id="Type">
+<default_type>string</default_type>
+<default_value>'ellipse'</default_value>
+<sem_type>string</sem_type>
+<type_list>
+<item>string</item>
+</type_list>
+<values>
+<item>'rectangle1'</item>
+<item>'rectangle2'</item>
+<item>'circle'</item>
+<item>'ellipse'</item>
+</values>
+</parameter>
+<parameter id="WindowHandle">
+<default_type>integer</default_type>
+<mixed_type>false</mixed_type>
+<sem_type>window</sem_type>
+<type_list>
+<item>integer</item>
+</type_list>
+</parameter>
+</parameters>
+</docu>
+</procedure>
+<procedure name="process_image">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<oo>
+<par name="EdgeAmplitude" base_type="iconic" dimension="0"/>
+</oo>
+<ic>
+<par name="WindowHandle" base_type="ctrl" dimension="0"/>
+<par name="DrawID" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>* Apply an Sobel edge filter on the background</c>
+<c>* image within the region of interest defined</c>
+<c>* by the drawing object.</c>
+<l>get_drawing_object_iconic (Region, DrawID)</l>
+<l>reduce_domain (Image, Region, ImageReduced)</l>
+<l>sobel_amp (ImageReduced, EdgeAmplitude, 'sum_abs', 3)</l>
+<l>return ()</l>
+</body>
+<docu id="process_image">
+<parameters>
+<parameter id="DrawID">
+<default_type>integer</default_type>
+<mixed_type>false</mixed_type>
+<sem_type>drawing_object</sem_type>
+<type_list>
+<item>integer</item>
+</type_list>
+</parameter>
+<parameter id="EdgeAmplitude">
+<sem_type>object</sem_type>
+</parameter>
+<parameter id="Image"/>
+<parameter id="WindowHandle">
+<default_type>integer</default_type>
+<mixed_type>false</mixed_type>
+<sem_type>window</sem_type>
+<type_list>
+<item>integer</item>
+</type_list>
+</parameter>
+</parameters>
+</docu>
+</procedure>
+<procedure name="display_results">
+<interface>
+<io>
+<par name="EdgeAmplitude" base_type="iconic" dimension="0"/>
+</io>
+</interface>
+<body>
+<c>* Display the filtered image</c>
+<l>dev_get_window (WindowHandle)</l>
+<l>set_window_param (WindowHandle, 'flush', 'false')</l>
+<l>dev_clear_window ()</l>
+<l>dev_display (EdgeAmplitude)</l>
+<l>set_window_param (WindowHandle, 'flush', 'true')</l>
+<l>flush_buffer (WindowHandle)</l>
+<l>return ()</l>
+</body>
+<docu id="display_results">
+<parameters>
+<parameter id="EdgeAmplitude">
+<sem_type>object</sem_type>
+</parameter>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>

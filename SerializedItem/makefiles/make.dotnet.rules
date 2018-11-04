@@ -1,0 +1,40 @@
+################## # Rules ###################################################
+
+
+.PHONY: all clean config config_halcon config_engine \
+        xcopy_deploy xcopy_deploy_halcon xcopy_deploy_engine
+
+all: $(APP_OUT)
+
+clean:
+	-$(RM) $(DIR_OUT)$(SLASH)*.*
+
+$(DIR_OUT):
+	-$(MKDIR) $(DIR_OUT)
+
+$(APP_OUT): $(DIR_OUT) $(SRC_FILES) $(RES_FORM) xcopy_deploy
+	$(RESGEN) $(RES_FORM) $(RES_OBJ_FORM)
+	$(CSC) /out:$(APP_OUT) /main:$(APP_MAIN) /target:exe  \
+               /resource:$(RES_OBJ_FORM)                      \
+               $(SRC_FILES) $(CSC_FLAGS)
+	-$(RM) $(RES_OBJ_FORM)
+
+xcopy_deploy_halcon:
+	 $(CP) "$(LIB_HALCON_DOTNET)" $(COPY_HALCON_DOTNET)
+
+xcopy_deploy_engine:
+	 $(CP) "$(LIB_ENGINE_DOTNET)" $(COPY_ENGINE_DOTNET)
+
+
+#Building configuration files for locating native libraries
+
+
+config_halcon:
+	echo '<configuration>                                     \
+                <dllmap dll="halcon" target="$(LIB_HALCON)"/>     \
+              </configuration>' > $(CONF_HALCON_DOTNET)
+
+config_engine:
+	echo '<configuration>                                     \
+                <dllmap dll="hdevengine" target="$(LIB_ENGINE)"/> \
+              </configuration>' > $(CONF_ENGINE_DOTNET)

@@ -1,0 +1,8 @@
+# Configure variables for this example and build using generic makefile
+
+APP_NAME           = SerializedItem
+APP_FORM           = SerializedItemForm
+XL                 = 0
+ENGINE             = 0
+
+!include make.dotnet.win
