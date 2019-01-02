@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image, 'printer_chip/printer_chip_01')</l>
+<l>dev_set_draw ('fill')</l>
+<l>gen_rectangle1 (ROI_0, 22.8774, 541.969, 274.198, 663.579)</l>
+<l>reduce_domain (Image, ROI_0, ImageReduced)</l>
+<l>gray_closing_shape(Image,ImageClosing,20, 20, 'rectangle')</l>
+<l>gray_opening_shape(ImageClosing,ImageOpening,20, 20, 'octagon')</l>
+<l>threshold(ImageOpening,Region,125,244)</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

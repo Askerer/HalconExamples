@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image,'printer_chip/printer_chip_01')</l>
+<l>sobel_amp (Image,EdgeAmplitude,'sum_abs',3)</l>
+<l>threshold (EdgeAmplitude, Region, 100, 255)</l>
+<l>reduce_domain (EdgeAmplitude,Region,ImageReduced)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

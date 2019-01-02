@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image,'surface_scratch')</l>
+<l>mean_image (Image, ImageMean, 15, 15)</l>
+<l>sub_image (Image, ImageMean, ImageSub, 1, 128)</l>
+<l>threshold (ImageSub, Region, 90, 121)</l>
+<l>connection (Region, ConnectedRegions)</l>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 100, 800)</l>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

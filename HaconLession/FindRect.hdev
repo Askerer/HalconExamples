@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image(Image,'printer_chip/printer_chip_01')</l>
+<l>threshold (Image, Regions, 132, 255)</l>
+<l>connection (Regions, ConnectedRegions)</l>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 5000, 99999)</l>
+<l>select_shape (SelectedRegions, SelectedRegions1, 'rectangularity', 'and', 0.9, 1)</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

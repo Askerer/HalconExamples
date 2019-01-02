@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image(Image,'C:/Users/Chanru/Desktop/Class/rgb/im4.bmp')</l>
+<c>**轉3通道成三張圖</c>
+<l>decompose3 (Image, Image1, Image2, Image3)</l>
+<c>**</c>
+<l>trans_from_rgb (Image1, Image2, Image3, ImageResult1, ImageResult2, ImageResult3, 'hsv')</l>
+<c></c>
+<l>trans_to_rgb (ImageResult1, ImageResult2, ImageResult3, ImageRed, ImageGreen, ImageBlue, 'hsv')</l>
+<c></c>
+<l>compose3 (ImageRed, ImageGreen, ImageBlue, MultiChannelImage)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

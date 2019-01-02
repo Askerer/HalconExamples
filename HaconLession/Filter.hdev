@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image,'surface_scratch')</l>
+<l>*lines_gauss (Image, Lines, 0.6, 5, 8, 'dark', 'true', 'bar-shaped', 'true')</l>
+<l>scale_image (Image, ImageScaled, 5.1, -719)</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

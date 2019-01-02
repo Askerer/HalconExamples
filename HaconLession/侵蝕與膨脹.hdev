@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image,'pcb')</l>
+<c></c>
+<l>gray_closing_shape(Image,ImageClosing,7,7,'octagon')</l>
+<l>*gray_dilation_shape (Image, ImageMax, 7, 7, 'octagon')</l>
+<l>*gray_erosion_shape (ImageMax, ImageMin, 7, 7, 'octagon')</l>
+<c></c>
+<l>*gray_erosion_shape (Image, ImageMin1, 7, 7, 'octagon')</l>
+<l>*gray_dilation_shape (ImageMin1, ImageMax2, 7, 7, 'octagon')</l>
+<l>gray_opening_shape(Image, ImageOpening,7,7,'octagon')</l>
+<c></c>
+<c></c>
+<l>*sub_image (ImageMin , ImageMax2, ImageSub,1,128)</l>
+<l>*threshold(ImageSub,Region,200,255)</l>
+<l>dyn_threshold (ImageClosing , ImageOpening,RegionDynThresh, 75, 'light')</l>
+<l>connection (RegionDynThresh, ConnectedRegions)</l>
+<l>area_center (ConnectedRegions, Area, Row, Column)</l>
+<c></c>
+<l>*connection (Region, ConnectedRegions)</l>
+<l>*area_center (ConnectedRegions, Area, Row, Column)</l>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

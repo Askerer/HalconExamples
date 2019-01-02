@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image, 'printer_chip/printer_chip_01')</l>
+<l>threshold (Image, Region, 148, 255)</l>
+<l>connection (Region, ConnectedRegions)</l>
+<l>select_obj (ConnectedRegions, ObjectSelected, 3)</l>
+<c></c>
+<l>opening_rectangle1 (ObjectSelected, RegionOpening, 20, 20)</l>
+<l>*closing_rectangle1 (RegionOpening, RegionClosing, 20, 20)</l>
+<c></c>
+<c></c>
+<l>smallest_rectangle1 (RegionOpening, Row1, Column1, Row2, Column2)</l>
+<l>* gen_rectangle1 (Rectangle, Row1, Column1, Row2, Column2)</l>
+<l>* inner_rectangle1 (Rectangle, Row11, Column11, Row21, Column21)</l>
+<l>* gen_rectangle1 (Rectangle1, Row11, Column11, Row21, Column21)</l>
+<l>LB:=[Row2,Column1]</l>
+<l>RT:=[Row1,Column2]</l>
+<c></c>
+<c></c>
+<l>dev_set_draw ('margin')</l>
+<l>dev_display(Image)</l>
+<l>* dev_display(RegionClosing)</l>
+<l>dev_display(RegionOpening)</l>
+<l>* dev_display(Rectangle)</l>
+<l>* dev_display(Rectangle1)</l>
+<c></c>
+<l>* LB:=[275,548]</l>
+<l>* RT:=[20,663]</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

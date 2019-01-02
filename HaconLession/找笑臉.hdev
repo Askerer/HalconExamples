@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image(Image,'printer_chip/printer_chip_01')</l>
+<l>threshold (Image, Regions, 122, 255)</l>
+<l>connection (Regions, ConnectedRegions)</l>
+<c>*找面積範圍</c>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 2000, 99999)</l>
+<c>*找circularity</c>
+<l>select_shape (SelectedRegions, SelectedRegions, 'circularity', 'and', 0.371, 0.4)</l>
+<c>*取得Area , Row , Column值</c>
+<l>area_center (SelectedRegions, Area, Row, Column)</l>
+<c></c>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

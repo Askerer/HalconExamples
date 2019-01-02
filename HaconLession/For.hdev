@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>list_files ('C:/Users/Chanru/Desktop/Class/sm', 'files', Files)</l>
+<l>for Index := 1 to |Files|-1 by 1</l>
+<l>    read_image (Image,Files[Index])</l>
+<l>    mean_image (Image, ImageMean, 15, 15)</l>
+<l>    sub_image (Image, ImageMean, ImageSub, 1, 128)</l>
+<l>    threshold (ImageSub, Regions1, 34, 120)</l>
+<l>    connection (Regions1, ConnectedRegions)</l>
+<l>    select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 1000, 99999)</l>
+<l>    area_center (SelectedRegions, Area, Row, Column)</l>
+<l>    stop()</l>
+<l>endfor</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

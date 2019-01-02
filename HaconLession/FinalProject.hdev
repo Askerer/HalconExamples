@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="2">* Matching 01: ************************************************</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="3">* Matching 01: BEGIN of generated code for model initialization</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="4">* Matching 01: ************************************************</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="5">set_system ('border_shape_models', 'false')</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[0]" as_ord="6">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,1]" as_ord="1">* Matching 01: Obtain the model image</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,1,1]" as_ord="2">read_image (Image, 'C:/Users/Chanru/Desktop/Class/bd/bd1.png')</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,2]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,2]" as_ord="2">* Matching 01: Build the ROI from basic regions</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,1,2]" as_ord="3">gen_rectangle1 (ModelRegion, 445.809, 637.592, 801.311, 1070.62)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,3]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,3]" as_ord="2">* Matching 01: Reduce the model template</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,1,3]" as_ord="3">reduce_domain (Image, ModelRegion, TemplateImage)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,4]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,1,4]" as_ord="2">* Matching 01: Create the shape model</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,1,4]" as_ord="3">create_shape_model (TemplateImage, 6, rad(0), rad(360), rad(0.4233), ['point_reduction_medium','no_pregeneration'], 'use_polarity', [10,14,35], 3, ModelID)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,2]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,2]" as_ord="2">* Matching 01: Get the model contour for transforming it later into the image</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,2]" as_ord="3">get_shape_model_contours (ModelContours, ModelID, 1)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,5]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[1,5]" as_ord="2">* Matching 01: Get the reference position</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[1,5]" as_ord="3">area_center (ModelRegion, ModelRegionArea, RefRow, RefColumn)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[2]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[2]" as_ord="2">* Matching 01: END of generated code for model initialization</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[3,1]" as_ord="1">* Matching 01:  * * * * * * * * * * * * * * * * * * * * * * *</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[3,1]" as_ord="2">* Matching 01: BEGIN of generated code for model application</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[4]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[4]" as_ord="2">* Matching 01: Loop over all specified test images</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[4]" as_ord="3">TestImages := ['C:/Users/Chanru/Desktop/Class/bd/bd1.png','C:/Users/Chanru/Desktop/Class/bd/bd10.png','C:/Users/Chanru/Desktop/Class/bd/bd2.png','C:/Users/Chanru/Desktop/Class/bd/bd3.png','C:/Users/Chanru/Desktop/Class/bd/bd4.png','C:/Users/Chanru/Desktop/Class/bd/bd5.png','C:/Users/Chanru/Desktop/Class/bd/bd6.png','C:/Users/Chanru/Desktop/Class/bd/bd7.png','C:/Users/Chanru/Desktop/Class/bd/bd8.png','C:/Users/Chanru/Desktop/Class/bd/bd9.png']</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[4]" as_ord="4">for T := 0 to 9 by 1</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[5]" as_ord="1">    * </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[5]" as_ord="2">    * Matching 01: Obtain the test image</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[5]" as_ord="3">    read_image (Image, TestImages[T])</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[6]" as_ord="1">    * </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[6]" as_ord="2">    * Matching 01: Find the model</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[6]" as_ord="3">    find_shape_model (Image, ModelID, rad(0), rad(360), 0.5, 0, 0.5, 'least_squares', [6,1], 0.75, Row, Column, Angle, Score)</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[9,1]" as_ord="1">    * </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[9,1]" as_ord="2">    * Matching 01: Code for rectification of the image</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[9,1]" as_ord="3">    * Matching 01: Calculate an inverse hom_mat2d for each of the matching results</c>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,2]" as_ord="1">    for I := 0 to |Score| - 1 by 1</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,3]" as_ord="1">        hom_mat2d_identity (RectificationHomMat2D)</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,4]" as_ord="1">        hom_mat2d_translate (RectificationHomMat2D, RefRow-Row[I], RefColumn-Column[I], RectificationHomMat2D)</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,4]" as_ord="2">        hom_mat2d_rotate (RectificationHomMat2D, -Angle[I], RefRow, RefColumn, RectificationHomMat2D)</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,5]" as_ord="1">        affine_trans_image (Image, RectifiedImage, RectificationHomMat2D, 'constant', 'false')</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[9,6]" as_ord="1">        * </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[9,6]" as_ord="2">        * Matching 01: Insert your code using the rectified image here</c>
+<c>        </c>
+<l>        threshold (Image, Regions, 99, 255)</l>
+<l>        connection (Regions, ConnectedRegions)</l>
+<l>        select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 150, 800)</l>
+<c>        </c>
+<l>        smallest_circle (SelectedRegions, Row1, Column1, Radius)</l>
+<l>        create_metrology_model(MetrologyHandle)</l>
+<l>        get_image_size(RectifiedImage, Width, Height)</l>
+<l>        set_metrology_model_image_size(MetrologyHandle, Width, Height)</l>
+<l>        add_metrology_object_circle_measure(MetrologyHandle, Row1, Column1, Radius, 20, 5, 1, 30, 'num_measures', 30, Index)</l>
+<l>        apply_metrology_model(RectifiedImage, MetrologyHandle)</l>
+<l>        get_metrology_object_measures (Contours, MetrologyHandle, 'all', 'all', Row3, Column3)</l>
+<l>        get_metrology_object_result(MetrologyHandle, 'all', 'all', 'result_type', 'all_param', Parameter)</l>
+<c>        **********</c>
+<c>        </c>
+<l>        threshold (Image, Regions1, 22, 78)</l>
+<l>        smallest_circle(Regions1, Row2, Column2, Radius1)</l>
+<l>        create_metrology_model(MetrologyHandle1)</l>
+<l>        set_metrology_model_image_size(MetrologyHandle1, Width, Height)</l>
+<l>        add_metrology_object_circle_measure(MetrologyHandle1, Row2, Column2, Radius1, 20, 5, 1, 30, [], [], Index1)</l>
+<l>        apply_metrology_model(RectifiedImage, MetrologyHandle1)</l>
+<l>        get_metrology_object_result(MetrologyHandle1, 'all', 'all', 'result_type', 'all_param', Parameter1)</l>
+<c>        ********</c>
+<c>        </c>
+<l>        SmlC:=[0:3:|Parameter|-1]</l>
+<l>        SR:= Parameter[SmlC]</l>
+<l>        SC:= Parameter[SmlC+1]</l>
+<c>        </c>
+<l>        BR:= (SR * 0) + Parameter1[0]</l>
+<l>        BC:= (SC * 0) + Parameter1[1]</l>
+<c>        </c>
+<c>        </c>
+<l>        distance_pp(SR, SC, BR, BC, Distance)</l>
+<c>       </c>
+<l>        dev_display(RectifiedImage)</l>
+<l>        gen_region_line(RegionLines, SR, SC, BR, BC)</l>
+<l>        stop()</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[9,7]" as_ord="1">    endfor</l>
+<l as_id="matching" as_name="Matching 01" as_grp="[10]" as_ord="1">endfor</l>
+<c as_id="matching" as_name="Matching 01" as_grp="[11]" as_ord="1">* </c>
+<c as_id="matching" as_name="Matching 01" as_grp="[12]" as_ord="1">* Matching 01: *******************************************</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[12]" as_ord="2">* Matching 01: END of generated code for model application</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[12]" as_ord="3">* Matching 01: *******************************************</c>
+<c as_id="matching" as_name="Matching 01" as_grp="[12]" as_ord="4">* </c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

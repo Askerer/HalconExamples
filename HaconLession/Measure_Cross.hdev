@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image(Image,'printer_chip/printer_chip_01')</l>
+<l>gen_region_line (ROI_0, 165.133, 866.25, 241.027, 866.25)</l>
+<l>* gen_region_line (ROI_1, 165.047, 877.22, 240.33, 877.22)</l>
+<l>create_metrology_model(MetrologyHandle)</l>
+<l>get_image_size (Image, Width, Height)</l>
+<l>set_metrology_model_image_size(MetrologyHandle, Width, Height)</l>
+<l>add_metrology_object_line_measure(MetrologyHandle, 165.133, 866.25, 241.027, 866.25, 20, 5, 1, 30, 'num_measures', 100, Index)</l>
+<l>apply_metrology_model(Image, MetrologyHandle)</l>
+<l>get_metrology_object_measures (Contours, MetrologyHandle, 'all', 'all', Row, Column)</l>
+<l>get_metrology_object_result(MetrologyHandle, 'all', 'all', 'result_type', 'all_param', Parameter)</l>
+<c>********</c>
+<l>gen_region_line (ROI_0, 17.5, 809.063, 17.5, 869.027)</l>
+<c>*gen_region_line()</c>
+<l>*gen_region_line (ROI_0, 104.085, 837.233, 63.3302, 905.192)</l>
+<c></c>
+<l>create_metrology_model(MetrologyHandle1)</l>
+<l>set_metrology_model_image_size(MetrologyHandle1, Width, Height)</l>
+<l>add_metrology_object_line_measure(MetrologyHandle1, 17.5, 809.063, 17.5, 869.027, 40, 3, 1, 30, [], [], Index1)</l>
+<l>apply_metrology_model(Image, MetrologyHandle1)</l>
+<l>get_metrology_object_result(MetrologyHandle1, 'all', 'all', 'result_type', 'all_param', Parameter1)</l>
+<c>**********</c>
+<l>intersection_lines(Parameter[0], Parameter[1], Parameter[2], Parameter[3], Parameter1[0], Parameter1[1], Parameter1[2], Parameter1[3], Row1, Column1, IsOverlapping)</l>
+<l>gen_cross_contour_xld(Cross,Row1,Column1,6, 0.785398)</l>
+<c></c>
+<c></c>
+<l>*gen_cross_contour_xld (Cross, Row, Column, 6, 0.785398)</l>
+<l>*intersection_lines(Row, Column, Row, Column, Row, Column, Row, Column, Row1, Column1, IsOverlapping)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

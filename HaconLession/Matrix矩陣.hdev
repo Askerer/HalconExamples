@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>a:=[1,2,3,4,5,6,7,8,9,10,11,12]</l>
+<l>a1:=a+1</l>
+<l>a2:=a*2</l>
+<l>a3:=[0:2:|a|-1]</l>
+<l>a4:=a[a3]</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
